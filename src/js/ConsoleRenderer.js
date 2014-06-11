@@ -1,16 +1,15 @@
 var ConsoleRenderer = function() {
 	this.render = function(msg, exception, level) {
-		console.log(msg, exception);
 
 		switch (level){
 			case 1:
 				this.errorRendercase();
 				break;
 			case 2:
-				alert("WARNING");
+				console.log("WARNING");
 				break;
 			default :
-				alert('gimme a right level');
+				console.log('gimme a right level');
 		}
 
 	}

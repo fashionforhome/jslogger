@@ -1,6 +1,9 @@
 <!Doctype html>
 <html>
 <head>
+	<?php //for testing purpose ?>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+
 	<script src="js/Logger.js"></script>
 	<script src="js/FrontendRenderer.js"></script>
 	<script src="js/BackendRenderer.js"></script>
@@ -16,4 +19,7 @@
 		}
 	</script>
 </head>
+<body>
+	<p>jslogger - testPage</p>
+</body>
 </html>

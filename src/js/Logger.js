@@ -24,11 +24,9 @@ var Logger = function() {
 //		}
 //	};
 
-	this.log = function(msg,exception , logLevel) {
-		var length = rendererList.length;
-		for(var i=0; i<length; i++){
-			rendererList[i].render(msg, exception, logLevel );
-		}
-
+	this.log = function(msg, exception, logLevel) {
+		jQuery.each(rendererList, function( index, renderer ) {
+			renderer.render(msg, exception, logLevel );
+		});
 	};
 }
