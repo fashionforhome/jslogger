@@ -1,5 +1,5 @@
 var FrontendRenderer = function() {
-    this.render = function(){
-        alert('Frontend');
+    this.render = function(msg, level, exception){
+
     }
 }
