@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="Always" serverName="devbox" autoUploadExternalChanges="true">
+    <serverData>
+      <paths name="devbox">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/primary/htdocs/cli/jslogger" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
+</project>
+

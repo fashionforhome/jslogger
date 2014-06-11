@@ -21,7 +21,10 @@ var Logger = function() {
         }
     };
 
-     this.log = function(data) {
-        //iterate over rendereList and call for each element e.render(data)
+     this.log = function() {
+         for(var i=0; i<=1; i++){
+             rendererList[i].render();
+         }
+
     };
 }
