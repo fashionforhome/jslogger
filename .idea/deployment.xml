@@ -5,7 +5,7 @@
       <paths name="devbox">
         <serverdata>
           <mappings>
-            <mapping deploy="/primary/htdocs/cli/jslogger" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/jslogger" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
