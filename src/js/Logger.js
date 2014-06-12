@@ -1,13 +1,13 @@
 var Logger = function() {
 
-	this.EMERGENCY  = 1;
-	this.ALERT      = 2;
-	this.CRITICAL   = 3;
-	this.ERROR      = 4;
-	this.WARNING    = 5;
-	this.NOTICE     = 6;
-	this.INFO       = 7;
-	this.DEBUG      = 8;
+	this.EMERGENCY  = 600;
+	this.ALERT      = 550;
+	this.CRITICAL   = 500;
+	this.ERROR      = 400;
+	this.WARNING    = 300;
+	this.NOTICE     = 250;
+	this.INFO       = 200;
+	this.DEBUG      = 100;
 
 	var rendererList = [];
 
