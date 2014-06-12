@@ -1,20 +1,18 @@
+/*@var config - expected as JSON, e.q.: {'url':"http://www.abc.com", 'consoleResponse':false} */
 var BackendRenderer = function(config) {
 
-	/*@var _config - expected as JSON: {'url':"http://www.abc.com", 'consoleResponse':false} */
-	var _config = config;
-
-	this.render = function(msg, logType, optionalData){
+	this.render = function(msg, logType, exceptionObj){
 		$.post(
-			_config['url'],
-			{ 'logType': logType, 'message': _buildMessage(msg, optionalData) }
+			config['url'],
+			{'logType': logType, 'message': buildMessage(msg, exceptionObj)}
 		).done( function( data ) {
-			if (_config['consoleResponse'] === true) {
+			if (config['consoleResponse'] === true) {
 				window.console && console.log('BackendRenderer here:', data);
 			}
 		});
 	};
 
-	var _buildMessage = function(msg, optionalData){
+	var buildMessage = function(msg, optionalData){
 		return msg;
 	};
 };
