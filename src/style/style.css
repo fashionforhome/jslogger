@@ -4,6 +4,7 @@
     width: 100%;
     text-align: center;
     border: 2px solid darkgray;
+    display: none;
 }
 .mainLog span{
     font-size: 15px;

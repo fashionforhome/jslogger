@@ -10,6 +10,7 @@ var Logger = function() {
 	this.DEBUG      = 100;
 
 	var rendererList = [];
+	var logLevel = 400;
 
 	this.addRenderer = function(renderers) {
 		rendererList.push(renderers);
@@ -48,17 +49,19 @@ var Logger = function() {
 		log(msg, exception, this.DEBUG);
 	};
 
-//	this.setLogLevel = function(level) {
-//		if(level !== parseInt(level)){
-//			console.log('WTF are you giving me!');
-//		} else {
-//			console.log("correct");
-//		}
-//	};
+	this.setLogLevel = function(level) {
+		if(level !== parseInt(level)){
+			console.log('WTF are you giving me!');
+		} else {
+			logLevel = level;
+		}
+	};
 
-	function log(msg, exception, logLevel) {
-		jQuery.each(rendererList, function( index, renderer ) {
-			renderer.render(msg, exception, logLevel );
-		});
+	function log(msg, exception, logtype) {
+		if(logtype >= logLevel){
+			jQuery.each(rendererList, function( index, renderer ) {
+				renderer.render(msg, exception, logtype );
+			});
+		}
 	}
 }
