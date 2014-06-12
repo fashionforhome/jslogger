@@ -16,6 +16,38 @@ var Logger = function() {
 		return this;
 	};
 
+	this.emergency = function(msg, exception){
+		log(msg, exception, this.EMERGENCY);
+	};
+
+	this.alert = function(msg, exception){
+		log(msg, exception, this.ALERT);
+	};
+
+	this.critical = function(msg, exception){
+		log(msg, exception, this.CRITICAL);
+	};
+
+	this.error = function(msg, exception){
+		log(msg, exception, this.ERROR);
+	};
+
+	this.warning = function(msg, exception){
+		log(msg, exception, this.WARNING);
+	};
+
+	this.notice = function(msg, exception){
+		log(msg, exception, this.NOTICE);
+	};
+
+	this.info = function(msg, exception){
+		log(msg, exception, this.INFO);
+	};
+
+	this.debug = function(msg, exception){
+		log(msg, exception, this.DEBUG);
+	};
+
 //	this.setLogLevel = function(level) {
 //		if(level !== parseInt(level)){
 //			console.log('WTF are you giving me!');
@@ -24,9 +56,9 @@ var Logger = function() {
 //		}
 //	};
 
-	this.log = function(msg, exception, logLevel) {
+	function log(msg, exception, logLevel) {
 		jQuery.each(rendererList, function( index, renderer ) {
 			renderer.render(msg, exception, logLevel );
 		});
-	};
+	}
 }
