@@ -8,6 +8,7 @@
 	<script src="js/FrontendRenderer.js"></script>
 	<script src="js/BackendRenderer.js"></script>
 	<script src="js/ConsoleRenderer.js"></script>
+	<script src="js/lib/clientDataCollector.js"></script>
 	<script>
 		var logger = new Logger();
 		logger.addRenderer(new ConsoleRenderer());
