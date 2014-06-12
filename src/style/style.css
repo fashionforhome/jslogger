@@ -1,0 +1,38 @@
+.mainLog{
+    position: relative;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    border: 2px solid darkgray;
+}
+.mainLog span{
+    font-size: 15px;
+}
+
+._600{ /*emergency*/
+    background-color: rgb(255, 63, 0);
+}
+
+._550{ /*alert*/
+    background-color: rgb(255, 126, 0);
+}
+
+._500{ /*critical*/
+    background-color: rgb(255, 189, 0);
+}
+
+._400{ /*error*/
+    background-color: rgb(255, 255, 0);
+}
+._300{ /*warning*/
+    background-color: rgb(192, 255, 0);
+}
+._250{ /*notice*/
+    background-color: rgb(66, 255, 0);
+}
+._200{ /*info*/
+    background-color: rgb(66, 255, 0);
+}
+._100{ /*notice*/
+    background-color: rgb(66, 255, 0);
+}
