@@ -3,23 +3,13 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-//		uglify: {
-//			options: {
-//				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
-//			},
-//			build: {
-//				src: 'src/js/Logger.js', //src: 'src/<%= pkg.name %>.js',
-//				dest: 'build/<%= pkg.name %>.min.js'
-//			}
-//		}
-
 		//at first, we need to concatenate all our js files
 		concat: {
 			js : {
 				src : [
 					'src/js/**/*.js'
 				],
-				dest : 'build/js/<%= pkg.name %>.js'
+				dest : 'src/build/js/<%= pkg.name %>.js'
 			}
 			//if we want it for css too, uncomment it
 			/**
@@ -39,8 +29,8 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'build/js/<%= pkg.name %>.js',
-				dest: 'build/js/<%= pkg.name %>.min.js'
+				src: 'src/build/js/<%= pkg.name %>.js',
+				dest: 'src/build/js/<%= pkg.name %>.min.js'
 			}
 		},
 
