@@ -14,7 +14,7 @@ var BackendRenderer = function(config) {
 	 * @param logType
 	 */
 	this.render = function(msg, exception, logType){
-		$.post(
+		jQuery.post(
 			config['url'],
 			{'logType': logType, 'message': buildMessage(msg, exception), clientData: clientDataCollector.toJsonString()}
 		).done( function( data ) {
