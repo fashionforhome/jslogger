@@ -13,7 +13,6 @@ use Monolog\Handler\StreamHandler;
  */
 class Log
 {
-
 	/**
 	 * @var string
 	 */
@@ -30,11 +29,11 @@ class Log
 	 * @var integer
 	 */
 	const DEFAULT_LOG_LEVEL = 200;
+
 	/**
 	 * @var \Monolog\Logger
 	 */
 	private $logger;
-
 
 	/**
 	 * constructor
