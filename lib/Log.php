@@ -52,15 +52,16 @@ class Log
 	 *
 	 * @param $logType
 	 * @param $logMsg
+	 * @param $additionalData
 	 *
 	 * @return bool
 	 */
-	public function log($logType, $logMsg)
+	public function log($logType, $logMsg, $additionalData)
 	{
 		$methodName = 'add' . ucfirst(strtolower($logType));
 
 		if (method_exists($this->logger, $methodName)) {
-			$this->logger->$methodName($logMsg, array('huba' => 'foo'));
+			$this->logger->$methodName($logMsg, $additionalData);
 
 			return true;
 		}

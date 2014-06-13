@@ -16,7 +16,7 @@ var BackendRenderer = function(config) {
 	this.render = function(msg, exception, logType){
 		$.post(
 			config['url'],
-			{'logType': logType, 'message': buildMessage(msg, exception)}
+			{'logType': logType, 'message': buildMessage(msg, exception), clientData: clientDataCollector.toJsonString()}
 		).done( function( data ) {
 			if (config['consoleResponse'] === true) {
 				window.console && console.log('BackendRenderer here:', data);
@@ -31,6 +31,6 @@ var BackendRenderer = function(config) {
 	 * @returns {string}
 	 */
 	var buildMessage = function(msg, exception){
-		return msg + ' | Exception-Message: ' + exception.stack + ' | Client-Data: ' + clientDataCollector.toJsonString();
+		return msg + ' | Stack-Trace: ' + exception.stack;
 	};
 };

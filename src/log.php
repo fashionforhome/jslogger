@@ -10,6 +10,12 @@ require_once __DIR__ . "/../vendor/autoload.php";
 // validate message
 $logMsg = isset($_POST['message']) ? $_POST['message'] : '';
 
+// prepare additionalData
+$additionalData = array();
+if (isset($_POST['clientData'])) {
+	$additionalData['clientData'] = $_POST['clientData'];
+}
+
 // validate logType
 try {
 	$logType = Logger::getLevelName($_POST['logType']);
@@ -17,6 +23,6 @@ try {
 	$logType = Logger::getLevelName(Log::DEFAULT_LOG_LEVEL);
 }
 
-// create log and log
+// create logger and log
 $log = new Log();
-$log->log($logType, $logMsg);
+$log->log($logType, $logMsg, $additionalData);
