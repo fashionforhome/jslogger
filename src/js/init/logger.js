@@ -13,9 +13,7 @@ jQuery( document ).ready( function() {
 		return;
 	}
 
-	jQuery.each(clientConfig.renderer, function(index, renderer){
-		jsServiceLogger.addRenderer(renderer);
-	});
+	jsServiceLogger.addRendererByConfig(clientConfig.renderer);
 
 	window.onerror = function(msg, url, line) {
 		// You can view the information in an alert to see things working

@@ -13,6 +13,8 @@ var jsLogger = function() {
 	this.INFO       = 200;
 	this.DEBUG      = 100;
 
+	var that = this;
+
 	/**
 	 * Renderer List
 	 * Currently Supported Frontend, Backend
@@ -162,4 +164,27 @@ var jsLogger = function() {
 
 		return false;
 	}
+
+	/**
+	 * Sets renderer by a passed config
+	 *
+	 * @param rendererConfig {array} e.q.: [{name: 'FrontendRenderer', config: {}, enable: false, stages: {}}]
+	 */
+	this.addRendererByConfig = function(rendererConfig) {
+		jQuery.each(rendererConfig, function(index, rendererConf){
+
+			if (rendererConf.name === 'BackendRenderer') {
+				that.addRenderer(new BackendRenderer(rendererConf.config))
+			}
+
+			if (rendererConf.name === 'FrontendRenderer') {
+				that.addRenderer(new FrontendRenderer())
+			}
+
+			if (rendererConf.name === 'ConsoleRenderer') {
+				that.addRenderer(new ConsoleRenderer())
+			}
+		});
+	};
+
 };
