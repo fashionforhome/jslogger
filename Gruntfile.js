@@ -47,7 +47,7 @@ module.exports = function(grunt) {
 
 		//after all this is nice for development, use "$ grunt watch" to start on console
 		watch: {
-			files: ['src/js/**/*.js'],
+			files: ['src/js/**/*.js', 'customer/**/*.js'],
 			tasks: ['concat', 'uglify']
 		}
 	});
