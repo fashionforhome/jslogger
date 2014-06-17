@@ -10,7 +10,8 @@ var clientConfig = {
 		},
 		{
 			name: 'BackendRenderer',
-			config: {url: 'http://www.jslogger.tino.dev.fashionforhome.de/log.php', consoleResponse:true },
+			// @todo here we ned the final logger url
+			config: {url: 'http://www.jslogger.rainer.dev.fashionforhome.de/log.php', consoleResponse:true},
 			enable: false,
 			stages: {}
 		},
