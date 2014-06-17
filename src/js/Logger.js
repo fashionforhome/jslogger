@@ -1,5 +1,10 @@
-var Logger = function() {
+var Logger = function()
+{
 
+	/**
+	 * Default values for the Log level
+	 * @type Constants
+	 */
 	this.EMERGENCY  = 600;
 	this.ALERT      = 550;
 	this.CRITICAL   = 500;
@@ -9,59 +14,151 @@ var Logger = function() {
 	this.INFO       = 200;
 	this.DEBUG      = 100;
 
+	/**
+	 * Renderer List
+	 * Currently Supported Frontend, Backend
+	 * @type {Array}
+	 */
 	var rendererList = [];
+	/**
+	 * Default Log level = Error
+	 * @type {number}
+	 */
 	var logLevel = 400;
 
-	this.addRenderer = function(renderers) {
-		rendererList.push(renderers);
+	/**
+	 * Adds a renderer in the list
+	 * @param renderer
+	 * @returns {Logger}
+	 */
+	this.addRenderer = function(renderer)
+	{
+		if (!isRenderInitialized(renderer)) {
+			rendererList.push(renderer);
+		}
 		return this;
 	};
 
-	this.emergency = function(msg, exception){
+	/**
+	 * Emergency renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.emergency = function(msg, exception)
+	{
 		log(msg, exception, this.EMERGENCY);
 	};
 
-	this.alert = function(msg, exception){
+	/**
+	 * Alert renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.alert = function(msg, exception)
+	{
 		log(msg, exception, this.ALERT);
 	};
 
-	this.critical = function(msg, exception){
+	/**
+	 * Critical renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.critical = function(msg, exception)
+	{
 		log(msg, exception, this.CRITICAL);
 	};
 
-	this.error = function(msg, exception){
+	/**
+	 * Error renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.error = function(msg, exception)
+	{
 		log(msg, exception, this.ERROR);
 	};
 
-	this.warning = function(msg, exception){
+	/**
+	 * Warning renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.warning = function(msg, exception)
+	{
 		log(msg, exception, this.WARNING);
 	};
 
-	this.notice = function(msg, exception){
+	/**
+	 * Notice renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.notice = function(msg, exception)
+	{
 		log(msg, exception, this.NOTICE);
 	};
 
-	this.info = function(msg, exception){
+	/**
+	 * Info renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.info = function(msg, exception)
+	{
 		log(msg, exception, this.INFO);
 	};
 
-	this.debug = function(msg, exception){
+	/**
+	 * Debug renderer
+	 * @param msg
+	 * @param exception
+	 */
+	this.debug = function(msg, exception)
+	{
 		log(msg, exception, this.DEBUG);
 	};
 
-	this.setLogLevel = function(level) {
-		if(level !== parseInt(level)){
+	/**
+	 * Overrides the default Log Level
+	 * @param level
+	 */
+	this.setLogLevel = function(level)
+	{
+		if (level !== parseInt(level)) {
 			console.log('WTF are you giving me!');
 		} else {
 			logLevel = level;
 		}
 	};
 
-	function log(msg, exception, logtype) {
-		if(logtype >= logLevel){
+	/**
+	 * Initializes the renderer
+	 * @param msg
+	 * @param exception
+	 * @param logtype
+	 */
+	function log(msg, exception, logtype)
+	{
+		if (logtype >= logLevel) {
 			jQuery.each(rendererList, function( index, renderer ) {
 				renderer.render(msg, exception, logtype );
 			});
 		}
+	}
+
+	/**
+	 * Checks if renderer is already initialised
+	 * ( Avoids double entries 'cause of double initialised Renderers )
+	 * @param renderer
+	 * @returns {boolean}
+	 */
+	function isRenderInitialized(renderer)
+	{
+		for (i=0; i<rendererList.length; i++) {
+			JSON.stringify(renderer) === JSON.stringify(rendererList[i]);
+			return true;
+		}
+		return false;
 	}
 }
