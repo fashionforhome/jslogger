@@ -1,5 +1,4 @@
-var Logger = function()
-{
+var jsLogger = function() {
 
 	/**
 	 * Default values for the Log level
@@ -29,7 +28,7 @@ var Logger = function()
 	/**
 	 * Adds a renderer in the list
 	 * @param renderer
-	 * @returns {Logger}
+	 * @returns {jsLogger}
 	 */
 	this.addRenderer = function(renderer)
 	{
@@ -161,4 +160,4 @@ var Logger = function()
 		}
 		return false;
 	}
-}
+};

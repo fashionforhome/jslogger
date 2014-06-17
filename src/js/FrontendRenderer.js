@@ -92,4 +92,4 @@ var FrontendRenderer = function()
 			});
 		});
 	}
-}
+};

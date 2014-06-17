@@ -12,9 +12,9 @@ var ConsoleRenderer = function() {
 				console.log('gimme a right level');
 		}
 
-	}
+	};
 
 	this.errorRendercase = function() {
 		//do html
-	}
-}
+	};
+};
