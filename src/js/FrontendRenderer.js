@@ -44,7 +44,10 @@ var FrontendRenderer = function()
 	 */
 	function createLogReport(msg, exception, level)
 	{
-		jQuery('body').append("<div class='mainLog'><h3>"+ levelErrors[level] + ": '" + msg + "'<br/><span>" + exception.stack + "</span></h3></div>");
+		//TODO overwork this quickfix
+		var stack = '';
+		if(exception !== undefined) {stack = exception.stack;}
+		jQuery('body').append("<div class='mainLog'><h3>"+ levelErrors[level] + ": '" + msg + "'<br/><span>" + stack + "</span></h3></div>");
 		jQuery('.mainLog:last').addClass("_" + String(level));
 	}
 
