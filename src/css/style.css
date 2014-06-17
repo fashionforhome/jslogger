@@ -1,15 +1,29 @@
+.logWrapper{
+    position: absolute;
+    top: -25px;
+    width: 100%;
+}
+
 .mainLog{
     display: none;
     position: relative;
-    top: 0;
+    top: 25px;
     width: 50%;
     text-align: left;
     display: none;
     left:50%;
     margin-left: -25%;
-    padding-bottom: 1em;
+    padding-bottom: 2em;
     border: 1px solid #ccc;
     z-index: 9999;
+    background: rgb(235,241,246); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(213,235,251,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(235,241,246,1)), color-stop(50%,rgba(171,211,238,1)), color-stop(100%,rgba(213,235,251,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(213,235,251,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(213,235,251,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(213,235,251,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(213,235,251,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#d5ebfb',GradientType=0 ); /* IE6-9 */
 }
 .mainLog h3, h4{
     margin-left:1em;
@@ -25,7 +39,7 @@
 }
 
 ._600{ /*emergency*/
-    background-color: rgba(255, 63, 0, 0.2);
+    /*background-color: rgba(255, 63, 0, 0.2);*/
     color: #FF3F00;
 }
 
@@ -95,13 +109,14 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
 
     position: relative;
-    top: 0;
+    top: 26px;
     width: 50.2%;
     text-align: center;
     left:50%;
     margin-left: -25%;
     padding-bottom: 1em;
     z-index: 9999;
+    height:13px;
 }
 .arrow-down, .arrow-up {
     cursor: pointer;
@@ -110,7 +125,7 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid #f00;
-    position: absolute;
+    position: relative;
     left: 96.5%;
     top:16%;
     z-index: 9999;

@@ -1,5 +1,6 @@
 var FrontendRenderer = function()
 {
+	this.officeIp = "87.234.20.234";
 	/**
 	 * Bool to be used in order for the header to be appended once
 	 * @type {boolean}
@@ -31,7 +32,8 @@ var FrontendRenderer = function()
 	function createHeader()
 	{
 		if(!headerCreated){
-			jQuery('body').append("<div class='header'><div class='arrow-down'></div><div class='arrow-up'></div></div>");
+			jQuery('body').append("<div class='logWrapper'></div>")
+			jQuery('.logWrapper').append("<div class='header'><div class='arrow-down'></div><div class='arrow-up'></div></div>");
 		}
 		headerCreated = true;
 	}
@@ -47,7 +49,7 @@ var FrontendRenderer = function()
 		//TODO overwork this quickfix
 		var stack = '';
 		if(exception !== undefined) {stack = exception.stack;}
-		jQuery('body').append("<div class='mainLog'><h3>"+ levelErrors[level] + ": '" + msg + "'<br/><span>" + stack + "</span></h3></div>");
+		jQuery('.logWrapper').append("<div class='mainLog'><h3>"+ levelErrors[level] + ": '" + msg + "'<br/><span>" + stack + "</span></h3></div>");
 		jQuery('.mainLog:last').addClass("_" + String(level));
 	}
 
