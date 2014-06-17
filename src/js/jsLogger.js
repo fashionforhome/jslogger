@@ -154,10 +154,12 @@ var jsLogger = function() {
 	 */
 	function isRenderInitialized(renderer)
 	{
-		for (i=0; i<rendererList.length; i++) {
-			JSON.stringify(renderer) === JSON.stringify(rendererList[i]);
-			return true;
-		}
+		jQuery.each( rendererList, function(index, value){
+			if(JSON.stringify(renderer) === JSON.stringify(rendererList[i])) {
+				return true;
+			}
+		});
+
 		return false;
 	}
 };
