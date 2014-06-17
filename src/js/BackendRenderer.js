@@ -14,6 +14,10 @@ var BackendRenderer = function(config) {
 	 * @param logType
 	 */
 	this.render = function(msg, exception, logType){
+		if(config === undefined) {
+			return;
+		}
+
 		jQuery.post(
 			config['url'],
 			{'logType': logType, 'message': buildMessage(msg, exception), clientData: clientDataCollector.toJsonString()}
