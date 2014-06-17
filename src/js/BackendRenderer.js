@@ -35,6 +35,10 @@ var BackendRenderer = function(config) {
 	 * @returns {string}
 	 */
 	var buildMessage = function(msg, exception){
-		return msg + ' | Stack-Trace: ' + exception.stack;
+		var stackTrace = '';
+		if(exception !== undefined){
+			stackTrace = exception.stack;
+		}
+		return msg + ' | Stack-Trace: ' +stackTrace;
 	};
 };
