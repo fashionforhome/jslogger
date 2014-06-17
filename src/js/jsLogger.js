@@ -47,7 +47,7 @@ var jsLogger = function() {
 	 */
 	this.emergency = function(msg, exception)
 	{
-		log(msg, exception, this.EMERGENCY);
+		that.log(msg, exception, this.EMERGENCY);
 	};
 
 	/**
@@ -57,7 +57,7 @@ var jsLogger = function() {
 	 */
 	this.alert = function(msg, exception)
 	{
-		log(msg, exception, this.ALERT);
+		that.log(msg, exception, this.ALERT);
 	};
 
 	/**
@@ -67,7 +67,7 @@ var jsLogger = function() {
 	 */
 	this.critical = function(msg, exception)
 	{
-		log(msg, exception, this.CRITICAL);
+		that.log(msg, exception, this.CRITICAL);
 	};
 
 	/**
@@ -77,7 +77,7 @@ var jsLogger = function() {
 	 */
 	this.error = function(msg, exception)
 	{
-		log(msg, exception, this.ERROR);
+		that.log(msg, exception, this.ERROR);
 	};
 
 	/**
@@ -87,7 +87,7 @@ var jsLogger = function() {
 	 */
 	this.warning = function(msg, exception)
 	{
-		log(msg, exception, this.WARNING);
+		that.log(msg, exception, this.WARNING);
 	};
 
 	/**
@@ -97,7 +97,7 @@ var jsLogger = function() {
 	 */
 	this.notice = function(msg, exception)
 	{
-		log(msg, exception, this.NOTICE);
+		that.log(msg, exception, this.NOTICE);
 	};
 
 	/**
@@ -107,7 +107,7 @@ var jsLogger = function() {
 	 */
 	this.info = function(msg, exception)
 	{
-		log(msg, exception, this.INFO);
+		that.log(msg, exception, this.INFO);
 	};
 
 	/**
@@ -117,7 +117,7 @@ var jsLogger = function() {
 	 */
 	this.debug = function(msg, exception)
 	{
-		log(msg, exception, this.DEBUG);
+		that.log(msg, exception, this.DEBUG);
 	};
 
 	/**
@@ -139,7 +139,7 @@ var jsLogger = function() {
 	 * @param exception
 	 * @param logtype
 	 */
-	function log(msg, exception, logtype)
+	this.log = function(msg, exception, logtype)
 	{
 		if (logtype >= logLevel) {
 			jQuery.each(rendererList, function( index, renderer ) {
