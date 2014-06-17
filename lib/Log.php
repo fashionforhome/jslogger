@@ -21,7 +21,7 @@ class Log
 	/**
 	 * @var string
 	 */
-	const PATH_TO_LOG = '/var/log/js.log';
+	const PATH_TO_LOG = '/var/log/';
 
 	/**
 	 * The default loglevel we want to use if none is provided
@@ -38,12 +38,19 @@ class Log
 	/**
 	 * constructor
 	 */
-	public function __construct()
+	public function __construct($logFileName)
 	{
+		// ensure logname is valid
+		if ($this->validateLogFileName($logFileName) === false) {
+			throw new \Exception('LogFileName: "' . $logFileName .'" Was Not Valid');
+		}
+
+		$logfilePathAndName = self::PATH_TO_LOG . $logFileName . '.log';
+
 		$this->logger = new Logger(self::LOGGER_NAME);
 
 		// register Handlers
-		$this->logger->pushHandler(new StreamHandler(self::PATH_TO_LOG, Logger::WARNING));
+		$this->logger->pushHandler(new StreamHandler($logfilePathAndName, Logger::WARNING));
 	}
 
 	/**
@@ -62,6 +69,26 @@ class Log
 		if (method_exists($this->logger, $methodName)) {
 			$this->logger->$methodName($logMsg, $additionalData);
 
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * A whitelist for valid LogfileNames
+	 *
+	 * @param $logFileName
+	 * @return bool
+	 */
+	protected function validateLogFileName($logFileName)
+	{
+		$validLogNames = array(
+			'js_f4h_testing' => true,
+			'js_f4h'         => true
+		);
+
+		if (isset($validLogNames[$logFileName])) {
 			return true;
 		}
 

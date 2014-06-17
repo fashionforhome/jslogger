@@ -15,8 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 	if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
 		header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-
-//	exit(0);
 }
 //TODO END - maybe move this header part
 
@@ -44,6 +42,16 @@ try {
 	$logType = Logger::getLevelName(Log::DEFAULT_LOG_LEVEL);
 }
 
+// get LogFileName
+$logFileName = $_POST['logfileName'];
+
 // create logger and log
-$log = new Log();
-$log->log($logType, $logMsg, $additionalData);
+try {
+	$log = new Log($logFileName);
+	$log->log($logType, $logMsg, $additionalData);
+	echo "sucess";
+
+} catch (Exception $e) {
+	// return errorMessage if one occures
+	echo $e->getMessage();
+}

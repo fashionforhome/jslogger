@@ -10,7 +10,7 @@ var clientConfig = {
 		},
 		{
 			name: 'BackendRenderer',
-			config: {url: 'http://www.jslogger.rainer.dev.fashionforhome.de/log.php', consoleResponse:true, logfileName:'f4h' },
+			config: {url: 'http://jslogger.fashionforhome.net//log.php', consoleResponse:true, logfileName:'js_f4h' },
 			enable: false,
 			stages: {}
 		},
