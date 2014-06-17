@@ -17,17 +17,20 @@ module.exports = function(grunt) {
 					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/f4h/init.js', 'src/js/init/logger.js'
 				],
 				dest : 'src/build/js/f4h<%= pkg.name %>.js'
-			}
-			//if we want it for css too, uncomment it
-			/**
-			,
+			},
+			f4h_testingjs : {
+				src : [
+					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/f4h_testing/init.js', 'src/js/init/logger.js'
+				],
+				dest : 'src/build/js/f4h_testing<%= pkg.name %>.js'
+			},
 			css: {
 				src: [
-					'css/*'
+					'css/**/*.css'
 				],
-				dest: 'combined.css'
+				dest: 'src/build/css/combined.css'
 			}
-			*/
+
 		},
 
 		//after concatenate into a new file we want to minify our js
@@ -42,8 +45,14 @@ module.exports = function(grunt) {
 			buildF4Hjs: {
 				src: 'src/build/js/f4h<%= pkg.name %>.js',
 				dest: 'src/build/js/f4h<%= pkg.name %>.min.js'
+			},
+			buildF4H_testingjs: {
+				src: 'src/build/js/f4h_testing<%= pkg.name %>.js',
+				dest: 'src/build/js/f4h_testing<%= pkg.name %>.min.js'
 			}
 		},
+
+//		cssmin
 
 		//after all this is nice for development, use "$ grunt watch" to start on console
 		watch: {

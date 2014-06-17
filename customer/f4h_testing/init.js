@@ -1,6 +1,6 @@
 var clientConfig = {
-	clientName : 'fashionforhome',
-	shortTag : 'f4h',
+	clientName : 'fashionforhome_testing',
+	shortTag : 'f4h_testing',
 	renderer : [
 		{
 			name: 'FrontendRenderer',
@@ -10,8 +10,8 @@ var clientConfig = {
 		},
 		{
 			name: 'BackendRenderer',
-			config: {url: 'http://www.jslogger.rainer.dev.fashionforhome.de/log.php', consoleResponse:true, logfileName:'f4h' },
-			enable: false,
+			config: {url: 'http://www.jslogger.rainer.dev.fashionforhome.de/log.php', consoleResponse:true, logfileName:'f4h_testing' },
+			enable: true,
 			stages: {}
 		},
 		{

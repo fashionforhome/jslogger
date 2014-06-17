@@ -20,7 +20,7 @@ var BackendRenderer = function(config) {
 
 		jQuery.post(
 			config['url'],
-			{'logType': logType, 'message': buildMessage(msg, exception), clientData: clientDataCollector.toJsonString()}
+			{'logType': logType, 'message': buildMessage(msg, exception), clientData: clientDataCollector.toJsonString(), logfileName: config.logFileName}
 		).done( function( data ) {
 			if (config['consoleResponse'] === true) {
 				window.console && console.log('BackendRenderer here:', data);
