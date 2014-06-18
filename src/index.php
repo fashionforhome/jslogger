@@ -15,19 +15,11 @@
 
 		jQuery( document ).ready(function() {
 			try{
-				throw Error('Exception mothafucka');
+				throw Error('Exception exceptionMessage');
 			} catch (e) {
-				logger.emergency('paaaarto', e);
-				logger.emergency('Wazzaaaa', e);
-				logger.error('paaaarto', e);
-				logger.error('Yooo niiiigaaazzz', e);
-			}
-			try{
-				throw Error('Exception partner');
-			} catch (e) {
-				logger.info('paaaarto', e);
-				logger.critical('paaaarto', e);
-				logger.critical('paaaarto', e);
+				logger.emergency('emergency message 1', e);
+				logger.emergency('emergency message 2', e);
+				logger.error('error message 1', e);
 			}
 		});
 	</script>
