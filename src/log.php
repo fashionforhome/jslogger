@@ -49,7 +49,7 @@ $logFileName = $_POST['logfileName'];
 try {
 	$log = new Log($logFileName);
 	$log->log($logType, $logMsg, $additionalData);
-	echo "sucess";
+	echo "success";
 
 } catch (Exception $e) {
 	// return errorMessage if one occures
