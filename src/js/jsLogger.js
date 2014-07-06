@@ -157,7 +157,7 @@ var jsLogger = function() {
 	function isRenderInitialized(renderer)
 	{
 		jQuery.each( rendererList, function(index, value){
-			if(JSON.stringify(renderer) === JSON.stringify(rendererList[i])) {
+			if(JSON.stringify(renderer) === JSON.stringify(rendererList[index])) {
 				return true;
 			}
 		});
