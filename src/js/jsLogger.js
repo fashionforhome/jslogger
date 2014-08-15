@@ -20,21 +20,29 @@ var jsLogger = function() {
 	 * Currently Supported Frontend, Backend
 	 * @type {Array}
 	 */
-	var rendererList = [];
+	var _rendererList = [];
+
 	/**
 	 * Default Log level = Error
 	 * @type {number}
 	 */
-	var logLevel = 400;
+	var _logLevel = 400;
 
 	/**
-	 * Reinitialize the logger by a passed config
-	 * e.g. the renderer
+	 * The config for the jsLogger.
+	 *
+	 * @type {Object}
+	 */
+	var _config = {};
+
+	/**
+	 * Set the config of the jsLogger.
 	 *
 	 * config looks like:
 	 * {
 	 * 	clientName : 'fashionforhome_testing',
 	 * 	shortTag : 'f4h_testing',
+	 * 	logLevel: 400,
 	 * 	renderer : [
 	 * 	{
 	 *  	name: 'FrontendRenderer',
@@ -46,25 +54,54 @@ var jsLogger = function() {
 	 * 	...
 	 * 	...
 	 * }
-	 * @param clientConfig {Object}
+	 * @param config {Object}
 	 */
-	this.reinitializeLoggerByConfig = function(clientConfig) {
-		rendererList = [];
+	this.setConfig = function(config) {
+		_config = config;
+	};
 
-		that.addRendererByConfig(clientConfig.renderer);
+	/**
+	 * Returns the config of the jsLogger.
+	 */
+	function getConfig() {
+		return _config;
+	}
+
+	/**
+	 * Initialize the jsLogger.
+	 * It's needed to set a config before.
+	 */
+	this.init = function() {
+		//store the config temporary, bec. of the following reset
+		var initConfig = getConfig();
+
+		//reset the jsLogger to it's default (also the config)
+		that.reset();
+
+		//start initialization
+		that.setConfig(initConfig);
+		that.setLogLevel(initConfig.logLevel);
+		that.addRendererByConfig(initConfig.renderer);
+	};
+
+	/**
+	 * Resets the jsLogger to it's default.
+	 */
+	this.reset = function() {
+		_config = {};
+		_rendererList = [];
+		_logLevel = 400;
 	};
 
 	/**
 	 * Adds a renderer in the list
 	 * @param renderer
-	 * @returns {jsLogger}
 	 */
 	this.addRenderer = function(renderer)
 	{
 		if (!isRenderInitialized(renderer)) {
-			rendererList.push(renderer);
+			_rendererList.push(renderer);
 		}
-		return this;
 	};
 
 	/**
@@ -156,7 +193,7 @@ var jsLogger = function() {
 		if (level !== parseInt(level)) {
 			console.log('WTF are you giving me!');
 		} else {
-			logLevel = level;
+			_logLevel = level;
 		}
 	};
 
@@ -168,8 +205,8 @@ var jsLogger = function() {
 	 */
 	this.log = function(msg, exception, logtype)
 	{
-		if (logtype >= logLevel) {
-			jQuery.each(rendererList, function( index, renderer ) {
+		if (logtype >= _logLevel) {
+			jQuery.each(_rendererList, function( index, renderer ) {
 				renderer.render(msg, exception, logtype );
 			});
 		}
@@ -183,13 +220,19 @@ var jsLogger = function() {
 	 */
 	function isRenderInitialized(renderer)
 	{
-		jQuery.each( rendererList, function(index, value){
-			if(JSON.stringify(renderer) === JSON.stringify(rendererList[index])) {
+		var isInitialized = false;
+		jQuery.each(_rendererList, function(index, value){
+			//continue loop
+			if (isInitialized) {
 				return true;
+			}
+
+			if(JSON.stringify(renderer) === JSON.stringify(_rendererList[index])) {
+				isInitialized = true;
 			}
 		});
 
-		return false;
+		return isInitialized;
 	}
 
 	/**

@@ -3,6 +3,7 @@ var jsLogger = jsLogger || {};
 jsLogger.clientConfig = {
 	clientName : 'fashionforhome_testing',
 	shortTag : 'f4h_testing',
+	logLevel : 400,
 	renderer : [
 		{
 			name: 'FrontendRenderer',
