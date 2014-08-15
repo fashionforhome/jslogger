@@ -3,6 +3,10 @@ module.exports = function(grunt) {
 	// Project configuration.
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+
+		deployment_src_path: null,
+		deployment_dst_path: null,
+
 		//at first, we need to concatenate all our js files
 		concat: {
 			//concat order should be: app js, then js/init/renderer then customer/f4h/init.js then js/init/logger.js
@@ -52,20 +56,52 @@ module.exports = function(grunt) {
 			}
 		},
 
+		shell: {
+			update: {
+				command: [
+					// delete  old files
+					'sudo mkdir -p <%= deployment_dst_path %>',
+					'sudo rm -r <%= deployment_dst_path %>/*',
+
+					// create production folders
+					'sudo mkdir -p <%= deployment_dst_path %>/src/build/js',
+					'sudo mkdir -p <%= deployment_dst_path %>/vendor',
+
+					// copy all production files
+					'sudo cp -r <%= deployment_src_path %>/src/build/js/* <%= deployment_dst_path %>/src/build/js',
+					'sudo cp -r <%= deployment_src_path %>/vendor <%= deployment_dst_path %>/',
+					'sudo cp <%= deployment_src_path %>/src/log.php <%= deployment_dst_path %>/src/log.php'
+				].join(";")
+			}
+		},
+
+		clean: {
+			temp: ["src/build/js/*.js", "!src/build/js/f4h_*.js"]
+		},
+
 //		cssmin
 
 		//after all this is nice for development, use "$ grunt watch" to start on console
 		watch: {
 			files: ['src/js/**/*.js', 'customer/**/*.js'],
-			tasks: ['concat', 'uglify']
+			tasks: ['concat', 'uglify', 'clean']
 		}
 	});
+
+	// set passed path options / use default paths
+	var tmpPath = grunt.option('tmp-path') ? grunt.option('tmp-path') : '/tmp/jslogger';
+	var dstPath = grunt.option('dst-path') ? grunt.option('dst-path') : '/home/ubuntu/jslogger';
+	grunt.config.set('deployment_src_path', tmpPath);
+	grunt.config.set('deployment_dst_path', dstPath);
 
 	//Load the plugins
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-shell');
+	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Default task(s).
-	grunt.registerTask('default', ['concat', 'uglify']);
+	grunt.registerTask('default', ['concat', 'uglify', 'clean:temp']);
+	grunt.registerTask('deploy', ['concat', 'uglify', 'clean:temp', 'shell:update']);
 };
