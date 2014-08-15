@@ -28,6 +28,33 @@ var jsLogger = function() {
 	var logLevel = 400;
 
 	/**
+	 * Reinitialize the logger by a passed config
+	 * e.g. the renderer
+	 *
+	 * config looks like:
+	 * {
+	 * 	clientName : 'fashionforhome_testing',
+	 * 	shortTag : 'f4h_testing',
+	 * 	renderer : [
+	 * 	{
+	 *  	name: 'FrontendRenderer',
+	 *  	config: {},
+	 *  	enable: true,
+	 *  	stages: {}
+	 * 	},
+	 * 	...
+	 * 	...
+	 * 	...
+	 * }
+	 * @param clientConfig {Object}
+	 */
+	this.reinitializeLoggerByConfig = function(clientConfig) {
+		rendererList = [];
+
+		that.addRendererByConfig(clientConfig.renderer);
+	};
+
+	/**
 	 * Adds a renderer in the list
 	 * @param renderer
 	 * @returns {jsLogger}
@@ -146,7 +173,7 @@ var jsLogger = function() {
 				renderer.render(msg, exception, logtype );
 			});
 		}
-	}
+	};
 
 	/**
 	 * Checks if renderer is already initialised
@@ -172,6 +199,11 @@ var jsLogger = function() {
 	 */
 	this.addRendererByConfig = function(rendererConfig) {
 		jQuery.each(rendererConfig, function(index, rendererConf){
+
+			//continue loop
+			if (rendererConf.enable === false) {
+				return true;
+			}
 
 			if (rendererConf.name === 'BackendRenderer') {
 				that.addRenderer(new BackendRenderer(rendererConf.config))

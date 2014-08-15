@@ -1,4 +1,6 @@
-var clientConfig = {
+var jsLogger = jsLogger || {};
+
+jsLogger.clientConfig = {
 	clientName : 'fashionforhome_testing',
 	shortTag : 'f4h_testing',
 	renderer : [

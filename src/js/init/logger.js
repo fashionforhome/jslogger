@@ -1,4 +1,5 @@
-clientConfig = clientConfig || {};
+var jsLogger = jsLogger || {};
+jsLogger.clientConfig = jsLogger.clientConfig || {};
 
 var jsServiceLogger;
 jQuery( document ).ready( function() {
@@ -9,11 +10,11 @@ jQuery( document ).ready( function() {
 		jsServiceLogger = {};
 	}
 
-	if (jQuery.isEmptyObject(clientConfig) || jQuery.isEmptyObject(jsServiceLogger)) {
+	if (jQuery.isEmptyObject(jsLogger.clientConfig) || jQuery.isEmptyObject(jsServiceLogger)) {
 		return;
 	}
 
-	jsServiceLogger.addRendererByConfig(clientConfig.renderer);
+	jsServiceLogger.addRendererByConfig(jsLogger.clientConfig.renderer);
 
 	window.onerror = function(msg, url, line) {
 		// You can view the information in an alert to see things working
