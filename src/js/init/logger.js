@@ -1,25 +1,22 @@
 var jsLogger = jsLogger || {};
 jsLogger.clientConfig = jsLogger.clientConfig || {};
 
-var jsServiceLogger;
-jQuery( document ).ready( function() {
+/** @type { jsLogger|{} } */
+var jsServiceLogger = (function() {
 
-	try{
-		jsServiceLogger = new jsLogger();
-	} catch(e) {
-		jsServiceLogger = {};
+	serviceLogger = new jsLogger();
+
+	if (jQuery.isEmptyObject(jsLogger.clientConfig) || jQuery.isEmptyObject(serviceLogger)) {
+		return {};
 	}
 
-	if (jQuery.isEmptyObject(jsLogger.clientConfig) || jQuery.isEmptyObject(jsServiceLogger)) {
-		return;
-	}
-
-	jsServiceLogger.addRendererByConfig(jsLogger.clientConfig.renderer);
+	serviceLogger.setConfig(jsLogger.clientConfig);
+	serviceLogger.init();
 
 	window.onerror = function(msg, url, line) {
 		// You can view the information in an alert to see things working
 		// like so:
-		jsServiceLogger.error('Message:' + msg + ' | ' + 'url:' + url + ' | ' + 'line #:' + line );
+		serviceLogger.error('Message:' + msg + ' | ' + 'url:' + url + ' | ' + 'line #:' + line );
 
 		var suppressErrorAlert = true;
 		// If you return true, then error alerts (like in older versions of
@@ -27,4 +24,5 @@ jQuery( document ).ready( function() {
 		return suppressErrorAlert;
 	};
 
-});
+	return serviceLogger;
+}());
