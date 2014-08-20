@@ -191,7 +191,7 @@ var jsLogger = function() {
 	this.setLogLevel = function(level)
 	{
 		if (level !== parseInt(level)) {
-			console.log('WTF are you giving me!');
+			throw new Error('Invalid type, where an integer is expected.');
 		} else {
 			logLevel = level;
 		}
