@@ -4,7 +4,7 @@ jsLogger.clientConfig = jsLogger.clientConfig || {};
 /** @type { jsLogger|{} } */
 var jsServiceLogger = (function() {
 
-	serviceLogger = new jsLogger();
+	var serviceLogger = new jsLogger();
 
 	if (jQuery.isEmptyObject(jsLogger.clientConfig) || jQuery.isEmptyObject(serviceLogger)) {
 		return {};

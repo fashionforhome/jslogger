@@ -20,20 +20,20 @@ var jsLogger = function() {
 	 * Currently Supported Frontend, Backend
 	 * @type {Array}
 	 */
-	var _rendererList = [];
+	var rendererList = [];
 
 	/**
 	 * Default Log level = Error
 	 * @type {number}
 	 */
-	var _logLevel = 400;
+	var logLevel = that.ERROR;
 
 	/**
 	 * The config for the jsLogger.
 	 *
 	 * @type {Object}
 	 */
-	var _config = {};
+	var config = {};
 
 	/**
 	 * Set the config of the jsLogger.
@@ -54,17 +54,17 @@ var jsLogger = function() {
 	 * 	...
 	 * 	...
 	 * }
-	 * @param config {Object}
+	 * @param newConfig {Object}
 	 */
-	this.setConfig = function(config) {
-		_config = config;
+	this.setConfig = function(newConfig) {
+		config = newConfig;
 	};
 
 	/**
 	 * Returns the config of the jsLogger.
 	 */
 	function getConfig() {
-		return _config;
+		return config;
 	}
 
 	/**
@@ -88,9 +88,9 @@ var jsLogger = function() {
 	 * Resets the jsLogger to it's default.
 	 */
 	this.reset = function() {
-		_config = {};
-		_rendererList = [];
-		_logLevel = 400;
+		config = {};
+		rendererList = [];
+		logLevel = that.ERROR;
 	};
 
 	/**
@@ -100,7 +100,7 @@ var jsLogger = function() {
 	this.addRenderer = function(renderer)
 	{
 		if (!isRenderInitialized(renderer)) {
-			_rendererList.push(renderer);
+			rendererList.push(renderer);
 		}
 	};
 
@@ -111,7 +111,7 @@ var jsLogger = function() {
 	 */
 	this.emergency = function(msg, exception)
 	{
-		that.log(msg, exception, this.EMERGENCY);
+		that.log(msg, exception, that.EMERGENCY);
 	};
 
 	/**
@@ -121,7 +121,7 @@ var jsLogger = function() {
 	 */
 	this.alert = function(msg, exception)
 	{
-		that.log(msg, exception, this.ALERT);
+		that.log(msg, exception, that.ALERT);
 	};
 
 	/**
@@ -131,7 +131,7 @@ var jsLogger = function() {
 	 */
 	this.critical = function(msg, exception)
 	{
-		that.log(msg, exception, this.CRITICAL);
+		that.log(msg, exception, that.CRITICAL);
 	};
 
 	/**
@@ -141,7 +141,7 @@ var jsLogger = function() {
 	 */
 	this.error = function(msg, exception)
 	{
-		that.log(msg, exception, this.ERROR);
+		that.log(msg, exception, that.ERROR);
 	};
 
 	/**
@@ -151,7 +151,7 @@ var jsLogger = function() {
 	 */
 	this.warning = function(msg, exception)
 	{
-		that.log(msg, exception, this.WARNING);
+		that.log(msg, exception, that.WARNING);
 	};
 
 	/**
@@ -161,7 +161,7 @@ var jsLogger = function() {
 	 */
 	this.notice = function(msg, exception)
 	{
-		that.log(msg, exception, this.NOTICE);
+		that.log(msg, exception, that.NOTICE);
 	};
 
 	/**
@@ -171,7 +171,7 @@ var jsLogger = function() {
 	 */
 	this.info = function(msg, exception)
 	{
-		that.log(msg, exception, this.INFO);
+		that.log(msg, exception, that.INFO);
 	};
 
 	/**
@@ -181,7 +181,7 @@ var jsLogger = function() {
 	 */
 	this.debug = function(msg, exception)
 	{
-		that.log(msg, exception, this.DEBUG);
+		that.log(msg, exception, that.DEBUG);
 	};
 
 	/**
@@ -193,7 +193,7 @@ var jsLogger = function() {
 		if (level !== parseInt(level)) {
 			console.log('WTF are you giving me!');
 		} else {
-			_logLevel = level;
+			logLevel = level;
 		}
 	};
 
@@ -205,8 +205,8 @@ var jsLogger = function() {
 	 */
 	this.log = function(msg, exception, logtype)
 	{
-		if (logtype >= _logLevel) {
-			jQuery.each(_rendererList, function( index, renderer ) {
+		if (logtype >= logLevel) {
+			jQuery.each(rendererList, function( index, renderer ) {
 				renderer.render(msg, exception, logtype );
 			});
 		}
@@ -221,13 +221,13 @@ var jsLogger = function() {
 	function isRenderInitialized(renderer)
 	{
 		var isInitialized = false;
-		jQuery.each(_rendererList, function(index, value){
+		jQuery.each(rendererList, function(index, value){
 			//continue loop
 			if (isInitialized) {
 				return true;
 			}
 
-			if(JSON.stringify(renderer) === JSON.stringify(_rendererList[index])) {
+			if(JSON.stringify(renderer) === JSON.stringify(rendererList[index])) {
 				isInitialized = true;
 			}
 		});
