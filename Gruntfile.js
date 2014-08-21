@@ -16,17 +16,29 @@ module.exports = function(grunt) {
 				],
 				dest : 'src/build/js/<%= pkg.name %>.js'
 			},
-			f4hjs : {
+			config_production : {
 				src : [
-					'src/build/js/<%= pkg.name %>.js', 'customer/f4h/init.js', 'src/js/init/logger.js'
+					'src/build/js/<%= pkg.name %>.js', 'customer/production/init.js', 'src/js/init/logger.js'
 				],
-				dest : 'src/build/js/f4h<%= pkg.name %>.js'
+				dest : 'src/build/js/<%= pkg.name %>.production.js'
 			},
-			f4h_testingjs : {
+			config_rc : {
 				src : [
-					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/f4h_testing/init.js', 'src/js/init/logger.js'
+					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/rc/init.js', 'src/js/init/logger.js'
 				],
-				dest : 'src/build/js/f4h_testing<%= pkg.name %>.js'
+				dest : 'src/build/js/<%= pkg.name %>.rc.js'
+			},
+			config_testing : {
+				src : [
+					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/testing/init.js', 'src/js/init/logger.js'
+				],
+				dest : 'src/build/js/<%= pkg.name %>.testing.js'
+			},
+			config_development : {
+				src : [
+					'src/build/js/<%= pkg.name %>.js', 'src/js/init/renderer.js', 'customer/development/init.js', 'src/js/init/logger.js'
+				],
+				dest : 'src/build/js/<%= pkg.name %>.development.js'
 			},
 			css: {
 				src: [
@@ -41,17 +53,11 @@ module.exports = function(grunt) {
 			options: {
 				banner: '/** <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> Copyrigth by Fashion4Home GmbH 2014 */\n'
 			},
-			buildJs: {
-				src: 'src/build/js/<%= pkg.name %>.js',
-				dest: 'src/build/js/<%= pkg.name %>.min.js'
-			},
-			buildF4Hjs: {
-				src: 'src/build/js/f4h<%= pkg.name %>.js',
-				dest: 'src/build/js/f4h<%= pkg.name %>.min.js'
-			},
-			buildF4H_testingjs: {
-				src: 'src/build/js/f4h_testing<%= pkg.name %>.js',
-				dest: 'src/build/js/f4h_testing<%= pkg.name %>.min.js'
+			files: {
+				'src/build/j<%= pkg.name &>.production.js': ['src/build/j<%= pkg.name &>.production.min.js'],
+				'src/build/j<%= pkg.name &>.rc.js': ['src/build/j<%= pkg.name &>.rc.min.js'],
+				'src/build/j<%= pkg.name &>.testing.js': ['src/build/j<%= pkg.name &>.testing.min.js'],
+				'src/build/j<%= pkg.name &>.development.js': ['src/build/j<%= pkg.name &>.development.min.js']
 			}
 		},
 
@@ -75,10 +81,13 @@ module.exports = function(grunt) {
 		},
 
 		clean: {
-			temp: ["src/build/js/*.js", "!src/build/js/f4h_*.js"]
+			old: [
+				'src/build/js/*'
+			],
+			temp: [
+				'src/build/js/js-logger.js'
+			]
 		},
-
-//		cssmin
 
 		//after all this is nice for development, use "$ grunt watch" to start on console
 		watch: {
@@ -101,6 +110,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 
 	// Default task(s).
-	grunt.registerTask('default', ['concat', 'uglify', 'clean:temp']);
-	grunt.registerTask('deploy', ['concat', 'uglify', 'clean:temp', 'shell:update']);
+	grunt.registerTask('default', ['clean:old', 'concat', 'uglify', 'clean:temp']);
+	grunt.registerTask('deploy', ['clean:old', 'concat', 'uglify', 'clean:temp', 'shell:update']);
 };
