@@ -1,3 +1,4 @@
+#!/bin/sh
 GIT_URI="https://f4hautouser:DOza2bKTMkbvEUFC9Ndsx6U@bitbucket.org/fashion4home/jslogger.git"
 
 if [ -z "$1" ]
