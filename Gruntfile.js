@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			},
 			css: {
 				src: [
-					'css/**/*.css'
+					'src/css/**/*.css'
 				],
 				dest: 'src/build/css/combined.css'
 			}
