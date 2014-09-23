@@ -18,19 +18,22 @@ var BackendRenderer = function(config) {
 			return;
 		}
 
-		jQuery.post(
-			config['url'],
-			{
-			'logType': logType,
-			 'message': buildMessage(msg, exception),
-			 'clientData': clientDataCollector.toJsonString(),
-			 'logfileName': config.logfileName
-			}
-		).done( function( data ) {
+		jQuery.ajax({
+			method: 'POST',
+			url: config['url'],
+			data: {
+				logType: logType,
+				message: buildMessage(msg, exception),
+				clientData: clientDataCollector.toJsonString(),
+				logfileName: config.logfileName
+			},
+			crossDomain: true
+		}).done( function( data ) {
 			if (config['consoleResponse'] === true) {
 				window.console && console.log('BackendRenderer here:', data);
 			}
 		});
+
 	};
 
 	/**

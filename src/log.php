@@ -18,13 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 //TODO END - maybe move this header part
 
+
+require_once __DIR__ . "/../vendor/autoload.php";
+
 /**
  * The log script, makes minimalistic Bootstrapping and Initializes our log class and logs...
  */
 use F4H\Logger\Log;
 use Monolog\Logger;
-
-require_once __DIR__ . "/../vendor/autoload.php";
 
 // validate message
 $logMsg = isset($_POST['message']) ? $_POST['message'] : '';
