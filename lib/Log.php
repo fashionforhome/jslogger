@@ -84,8 +84,10 @@ class Log
 	protected function validateLogFileName($logFileName)
 	{
 		$validLogNames = array(
-			'js_f4h_testing' => true,
-			'js_f4h'         => true
+			'js_f4h_testing'        => true,
+			'js_f4h_production'     => true,
+			'js_f4h_rc'             => true,
+			'js_f4h_development'    => true,
 		);
 
 		if (isset($validLogNames[$logFileName])) {

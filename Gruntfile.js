@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			},
 			css: {
 				src: [
-					'css/**/*.css'
+					'src/css/**/*.css'
 				],
 				dest: 'src/build/css/combined.css'
 			}
@@ -72,11 +72,13 @@ module.exports = function(grunt) {
 					'sudo mkdir -p <%= deployment_dst_path %>/src/build/js',
 					'sudo mkdir -p <%= deployment_dst_path %>/src/build/css',
 					'sudo mkdir -p <%= deployment_dst_path %>/vendor',
+					'sudo mkdir -p <%= deployment_dst_path %>/lib',
 
 					// copy all production files
 					'sudo cp -r <%= deployment_src_path %>/src/build/js/* <%= deployment_dst_path %>/src/build/js',
 					'sudo cp -r <%= deployment_src_path %>/src/build/css/* <%= deployment_dst_path %>/src/build/css',
 					'sudo cp -r <%= deployment_src_path %>/vendor <%= deployment_dst_path %>/',
+					'sudo cp -r <%= deployment_src_path %>/lib <%= deployment_dst_path %>/',
 					'sudo cp <%= deployment_src_path %>/src/log.php <%= deployment_dst_path %>/src/log.php'
 				].join(";")
 			}
