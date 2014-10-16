@@ -15,7 +15,7 @@ jsLogger.clientConfig = {
 			name: 'BackendRenderer',
 			config: {
 				url: 'http://jslogger.fashionforhome.net/log.php',
-				consoleResponse: true,
+				consoleResponse: false,
 				logfileName: 'js_f4h_production'
 			},
 			enable: true,
