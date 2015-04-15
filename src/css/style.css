@@ -18,7 +18,7 @@
     z-index: 9999;
     background-color: #F0EDE7;
 }
-.mainLog h3, h4{
+.mainLog h3, .mainLog h4{
     margin-left:1em;
     margin-top: 0.5em;
 }
