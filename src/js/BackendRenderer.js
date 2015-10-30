@@ -1,7 +1,15 @@
 /**
  * Backend renderer
  * @var config - expected as JSON, e.q.: {'url':"http://www.abc.com", 'consoleResponse':false}
- **/
+ *
+ * @author Georgios Lolos <georgios.lolos@fashionforhome.de>
+ *
+ * @copyright (c) 2014 by fashion4home GmbH <www.fashionforhome.de>
+ * @license GPL-3.0
+ * @license http://opensource.org/licenses/GPL-3.0 GNU GENERAL PUBLIC LICENSE
+ *
+ * @version 1.0.0
+ */
 var BackendRenderer = function(config) {
 
 	var clientDataCollector = new ClientDataCollector();
