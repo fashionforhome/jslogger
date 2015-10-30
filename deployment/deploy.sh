@@ -1,4 +1,13 @@
 #!/bin/sh
+##
+# @author Eduard Bess <eduard.bess@fashionforhome.de>
+#
+# @copyright (c) 2014 by fashion4home GmbH <www.fashionforhome.de>
+# @license GPL-3.0
+# @license http://opensource.org/licenses/GPL-3.0 GNU GENERAL PUBLIC LICENSE
+#
+# @version 1.0.0
+
 GIT_URI="https://f4hautouser:DOza2bKTMkbvEUFC9Ndsx6U@bitbucket.org/fashion4home/jslogger.git"
 
 if [ -z "$1" ]
