@@ -1,15 +1,19 @@
 {
-	"name": "f4h/logger",
-	"description": "",
+	"name": "fashionforhome/jslogger",
+	"description": "Javascript logger",
 	"keywords": [
 	],
 	"license": [
-		"MIT"
+		"GPL-3.0"
 	],
 	"authors": [
 		{
 			"name": "Rainer Maucher",
 			"email": "rainer.maucher@fashionforhome.de"
+		},
+		{
+			"name": "Tino Stöckel",
+			"email": "tino.stoeckel@fashionforhome.de"
 		}
 	],
 	"suggest": {
